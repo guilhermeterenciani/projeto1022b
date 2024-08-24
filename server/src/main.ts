@@ -1,5 +1,6 @@
-import mysql from 'mysql2/promise';
+import mysql, { RowDataPacket } from 'mysql2/promise';
 // Create the connection to database
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -14,8 +15,10 @@ connection
         const queryExecutada = query.execute([])
         .then((result)=>{
             const [linhas ,campus] = result
-            console.log(linhas)
-            console.log(campus)
+            const dados = linhas as RowDataPacket[]
+            for(let i=0;i<dados.length;i++){
+                console.log(dados[i].id,dados[i].nome)
+            }
         })
         .catch((err)=>console.log("Erro:",err))
     })
