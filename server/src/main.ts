@@ -8,12 +8,14 @@ const connection = mysql.createConnection({
 connection
 .then((conn)=>{ // Se deu certo
     // Preparar uma query para execução.
-    const queryPreparada = conn.prepare("SELECT * FROM produtos");
+    const queryPreparada = conn.prepare("SELICT * FROM produtos");
     queryPreparada
-    .then()
+    .then((query)=>{})
     .catch((err)=>{
         if(err.code==='ER_NO_SUCH_TABLE'){
             console.log("ERRO: VOCÊ DEVE CRIAR A TABELA PRODUTOS NO WORKBENCH")
+        }else if(err.code==='ER_PARSE_ERROR'){
+            console.log("ERRO: VOCÊ DIGITOU ALGO ERRADO NA QUERY, CONFIRA A ESCRITA, VIRGULAS,NOME DAS COLUNAS E POSIÇÃO DAS PALAVRAS CHAVES.")
         }
         else{
             console.log("Erro não tratado:",err);
