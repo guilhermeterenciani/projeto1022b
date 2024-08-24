@@ -8,9 +8,17 @@ const connection = mysql.createConnection({
 connection
 .then((conn)=>{ // Se deu certo
     // Preparar uma query para execução.
-    const queryPreparada = conn.prepare("SELICT * FROM produtos");
+    const queryPreparada = conn.prepare("SELECT * FROM produtos");
     queryPreparada
-    .then((query)=>{})
+    .then((query)=>{
+        const queryExecutada = query.execute([])
+        .then((result)=>{
+            const [linhas ,campus] = result
+            console.log(linhas)
+            console.log(campus)
+        })
+        .catch((err)=>console.log("Erro:",err))
+    })
     .catch((err)=>{
         if(err.code==='ER_NO_SUCH_TABLE'){
             console.log("ERRO: VOCÊ DEVE CRIAR A TABELA PRODUTOS NO WORKBENCH")
