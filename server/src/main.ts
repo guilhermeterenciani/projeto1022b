@@ -11,7 +11,7 @@ connection
 .then() // Se deu certo
 .catch((erro)=>{ // Se deu Errado
     if(erro.code==='ECONNREFUSED'){
-        console.log("LIGA O LARAGON!")
+        console.log("ERRO: FAVOR LIGA O LARAGON!")
     }else{
         console.log(erro)
     }
