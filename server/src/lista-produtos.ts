@@ -34,8 +34,10 @@ class ListaProdutos{
                             preco: dados[i].preco,
                             imagem: dados[i].imagem,
                           }
-                          return listaProdutos.push(produto)
+                          listaProdutos.push(produto)
                       }
+                      return listaProdutos
+
                   })
                   .catch((err)=>console.log("Erro:",err))
               })

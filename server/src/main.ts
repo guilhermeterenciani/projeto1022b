@@ -1,5 +1,8 @@
 import ListaProdutos from "./lista-produtos";
 
-const objListaProdutos = new ListaProdutos();
-const produtos = objListaProdutos.execute();
-console.log("Produtos:",produtos)
+async function main(){
+    const objListaProdutos = new ListaProdutos();
+    const produtos = await objListaProdutos.execute();
+    console.log("Produtos:",produtos)
+}
+main()
