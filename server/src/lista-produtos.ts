@@ -7,16 +7,14 @@ type Output = {
     imagem:string
 }
 class ListaProdutos{
-    execute(){
-        const connection = mysql.createConnection({
+    async execute(){
+        const connection = await mysql.createConnection({
             host: 'localhost',
             user: 'root',
             database: 'banco1022b',
           });
-          return connection
-          .then((conn)=>{ // Se deu certo
-              // Preparar uma query para execução.
-              const queryPreparada = conn.prepare("SELECT * FROM produtos");
+         
+           const queryPreparada = await connection.prepare("SELECT * FROM produtos");
               return queryPreparada
               .then((query)=>{
                   const queryExecutada = query.execute([])
