@@ -31,7 +31,7 @@ class ListaProdutos{
                             id:dados[i].id,
                             nome: dados[i].nome,
                             descricao: dados[i].descricao,
-                            preco: dados[i].preco,
+                            preco: parseFloat(dados[i].preco),
                             imagem: dados[i].imagem,
                           }
                           listaProdutos.push(produto)
