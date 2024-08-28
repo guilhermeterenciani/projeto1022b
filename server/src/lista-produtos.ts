@@ -40,7 +40,7 @@ class ListaProdutos{
             }
             return listaProdutos   
         }
-        catch(erro){ // Se deu Errado
+        catch(erro:any){ // Se deu Errado
             if(erro.code==='ER_NO_SUCH_TABLE'){
                 console.log("ERRO: VOCÊ DEVE CRIAR A TABELA PRODUTOS NO WORKBENCH")
             }else if(erro.code==='ER_PARSE_ERROR'){
