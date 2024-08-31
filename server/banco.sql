@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS usuarios(
     idade INT,
     cpf VARCHAR(50),
     rg VARCHAR(50),
-    endereco VARCHAR(100)
-    estado_civil ENUM("solteiro,casado")
+    endereco VARCHAR(100),
+    estado_civil ENUM("solteiro","casado")
 );
 INSERT INTO produtos VALUES
 (1,"Iphone","Celular RUIM",5000.50,"SEM IMAGEM");
