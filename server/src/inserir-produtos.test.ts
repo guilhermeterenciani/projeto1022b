@@ -2,6 +2,7 @@ import {test,expect, afterEach} from 'vitest'
 import ListaProdutos from './lista-produtos'
 import mysql from 'mysql2/promise';
 import 'dotenv/config'
+import InserirProdutos from './inserir-produtos';
 afterEach(async()=>{
     const connection = await mysql.createConnection({
         host: process.env.DB_HOST,
@@ -21,10 +22,10 @@ test("Deve inserir um produto no banco de dados",async()=>{
     }
     //WHEN  => Quando eu fizer algo.
     const inserirProdutos = new InserirProdutos()
-    const produtoDoBanco = await inserirProdutos.executar(produto)
+    const produtoDoBanco = await inserirProdutos.execute(produto)
     //THEN
     const listaProdutos = new ListaProdutos()
-    const produtosBanco = listaProdutos.execute()
+    const listaBanco = await listaProdutos.execute()
     expect(produtoDoBanco).toEqual(produto)
-    expect(produtoDoBanco).toContainEqual(produto)
+    expect(listaBanco).toContainEqual(produto)
 })
