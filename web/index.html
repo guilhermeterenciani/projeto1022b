@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Produtos</title>
+    <style>
+        table,th,td{
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th,tr{
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Imagem</th>
+            </tr>
+        </thead>
+        <tbody id="conteudo"></tbody>
+    </table>
+    <script>
+        //Vamos buscar os dados no servidor da aplicação.
+        async function buscaDadosBanco(){
+            const dados = await fetch("http://localhost:8000/produtos")
+        }
+        buscaDadosBanco()
+    </script>
+    
+</body>
+</html>
