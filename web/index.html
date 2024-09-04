@@ -31,7 +31,27 @@
     <script>
         //Vamos buscar os dados no servidor da aplicação.
         async function buscaDadosBanco(){
-            const dados = await fetch("http://localhost:8000/produtos")
+            const resposta = await fetch("http://localhost:8000/produtos")
+            if(resposta.status ===200){
+                const dados = await resposta.json()
+                console.log(dados)
+                let tbody = document.getElementById("conteudo")
+                for(let produto of dados){
+                    const {id,nome,descricao,preco,imagem} = produto
+                    console.log(id,nome,descricao,preco,imagem)
+                    const tr = document.createElement("tr")
+                    tr.innerHTML = `<td>${id}</td>
+                                    <td>${nome}</td>
+                                    <td>${descricao}</td>
+                                    <td>${preco}</td>
+                                    <td>${imagem}</td>
+                                    `
+                    tbody.appendChild(tr)
+                }
+            }
+            else{
+                alert("Deu algo errado com o fetch");
+            }
         }
         buscaDadosBanco()
     </script>
