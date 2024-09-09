@@ -67,6 +67,32 @@
     </div>
 
     <!-- SCRIPT QUE SALVA OS DADOS DO CADASTRO COM O FETCH -->
+     <script>
+        // 1 - Buscar o botão de cadastrar.
+        const btn = document.getElementById("botao")
+        // 2 - Adicionar a ação de click
+        btn.addEventListener("click",()=>{
+            // alert("Botão Clicado!")
+            // 3 - Buscar os valores digitados nos 
+            //                     campos de input pelos Id's
+            const id        = document.getElementById("id").value
+            const nome      = document.getElementById("nome").value
+            const descricao = document.getElementById("descricao").value
+            const preco     = document.getElementById("preco").value
+            const imagem    = document.getElementById("imagem").value
+
+            const produto = {
+                id:id,
+                nome:nome,
+                descricao:descricao,
+                preco:preco,
+                imagem:imagem
+            }
+            console.log(produto)
+        })
+        
+        // 4 - ENVIAR PARA O SERVIDOR -> usando fetch
+     </script>
 </body>
 
 </html>
