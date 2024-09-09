@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos</title>
     <style>
-        body{
+        body {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .cadastro{
-            box-shadow: 0px 0px 5px rgb(0,0,0,0.5) ;
+
+        .cadastro {
+            box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
             border-radius: 5px;
             width: 30vw;
             padding: 50px;
@@ -20,11 +21,13 @@
             flex-direction: column;
             gap: 15px;
         }
-        .input-conteudo{
+
+        .input-conteudo {
             display: flex;
             flex-direction: column;
         }
-        input{
+
+        input {
             padding: 15px;
         }
     </style>
@@ -39,11 +42,6 @@
         <div class="input-conteudo">
             <label for="id">Id</label>
             <input type="text" name="id" id="id" placeholder="Id">
-        </div>
-        <div class="input-conteudo">
-            <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome" placeholder="Nome">
-
         </div>
         <div class="input-conteudo">
             <label for="nome">Nome</label>
@@ -67,32 +65,53 @@
     </div>
 
     <!-- SCRIPT QUE SALVA OS DADOS DO CADASTRO COM O FETCH -->
-     <script>
+    <script>
         // 1 - Buscar o botão de cadastrar.
         const btn = document.getElementById("botao")
         // 2 - Adicionar a ação de click
-        btn.addEventListener("click",()=>{
+        btn.addEventListener("click", async () => {
             // alert("Botão Clicado!")
             // 3 - Buscar os valores digitados nos 
             //                     campos de input pelos Id's
-            const id        = document.getElementById("id").value
-            const nome      = document.getElementById("nome").value
+            const id = document.getElementById("id").value
+            const nome = document.getElementById("nome").value
             const descricao = document.getElementById("descricao").value
-            const preco     = document.getElementById("preco").value
-            const imagem    = document.getElementById("url").value
+            const preco = document.getElementById("preco").value
+            const imagem = document.getElementById("url").value
 
             const produto = {
-                id:id,
-                nome:nome,
-                descricao:descricao,
-                preco:preco,
-                imagem:imagem
+                id: id,
+                nome: nome,
+                descricao: descricao,
+                preco: preco,
+                imagem: imagem
             }
-            console.log(produto)
+            //console.log(produto)
+            // 4 - ENVIAR PARA O SERVIDOR -> usando fetch
+            try {
+                const resposta = await fetch("http://localhost:8000/produtos", {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: "POST",
+                    body: JSON.stringify(produto),
+                });
+                if(resposta.status===201){
+                    alert("Deu certo cadastar no banco, VOLTE PARA LISTAGEM PARA CONFERIR");
+                }else{
+                    erro = await resposta.json()
+                    alert("Erro ao cadastrar:"+ erro.mensagem)
+                }
+            }
+            catch (e) {
+                alert("ERRO NO FETCH, consulte o CONSOLE NAVEGADOR.")
+                console.log(e)
+            }
+
         })
-        
-        // 4 - ENVIAR PARA O SERVIDOR -> usando fetch
-     </script>
+
+
+    </script>
 </body>
 
 </html>
