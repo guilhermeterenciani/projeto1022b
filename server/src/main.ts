@@ -25,8 +25,9 @@ app.post("/produtos", async (req:Request,res:Response)=>{
     try{
         const produtoInserido =await objInserirProdutos.execute(produto)
         res.status(201).send(produtoInserido);
-    }catch(e){
-        res.status(400).send({mensagem:"Não foi possível cadastrar"});
+    }catch(e:any){
+        //console.log(e)
+        res.status(400).send({mensagem:"Não foi possível cadastrar ERRO: "+e.message});
     }
 })
 
